@@ -12,18 +12,10 @@ import os
 import pytube
 import openai
 
-from dotenv import load_dotenv
-
-
-# Carga .env 
-load_dotenv()
-openai_api_key = os.getenv("OPENAI_API_KEY") 
-
 
 # Título
 st.header("Sube tu archivo y haz tus preguntas")
 st.subheader('Tipos de archivo soportados: PDF/DOCX/TXT/JPG/PNG/YouTube :city_sunrise:')
-
 
 
 # Set OPENAI_API_KEY as an environment variable
