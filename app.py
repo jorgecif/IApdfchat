@@ -84,15 +84,28 @@ if uploaded_files or youtube_url:
             streams = youtube_video.streams.filter(only_audio=True)
             stream = streams.first()
             stream.download(filename="youtube_audio.mp4")
+
             # Set the API key for Whisper
             openai.api_key = st.secrets["openai_api_key"]
+
+            # Transcribe audio using OpenAI API
             with open("youtube_audio.mp4", "rb") as audio_file:
-                transcript = openai.Audio.transcribe("whisper-1", audio_file)
-            youtube_text = transcript['text']
+                audio_data = audio_file.read()
+
+            # Replace 'whisper-1' with the appropriate model name for audio transcription
+            result = openai.Transcription.create(
+                audio_file=audio_data,
+                model="whisper-1",
+                language="en",
+                content_type="audio/mp3",  # Adjust the content type as needed
+            )
+
+            youtube_text = result['data'][0]['text']
 
             # Create a Langchain document instance for the transcribed text
             youtube_document = Document(page_content=youtube_text, metadata={})
             documents.append(youtube_document)
+
 
         # Chunk the data, create embeddings, and save in vectorstore
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=150)
