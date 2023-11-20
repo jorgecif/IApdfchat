@@ -93,7 +93,8 @@ if uploaded_files or youtube_url:
                 audio_data = audio_file.read()
 
             # Replace 'whisper-1' with the appropriate model name for audio transcription
-            result = openai.Transcription.create(
+
+            result = openai.audio.transcriptions.create(
                 audio_file=audio_data,
                 model="whisper-1",
                 language="en",
