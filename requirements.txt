@@ -10,3 +10,4 @@ pytube
 ffmpeg-python
 transformers
 pyarrow
+pip==23.2.1
