@@ -1,16 +1,20 @@
+streamlit
+openai>=1.0.0
+
 langchain
-openai==0.28
-chromadb <= 0.3.29
-tiktoken
-pypdf
-unstructured[all-docs]
-pdfminer
-poppler-utils
-pytube
-ffmpeg-python
-transformers
-pyarrow
-pip==23.2.1
+langchain-openai
 langchain-community
+
+chromadb
+
+unstructured
+python-docx
+pypdf
+
+pillow
+transformers
+torch
+
+pytube
 
 
